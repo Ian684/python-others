@@ -7,3 +7,9 @@ dcard.log
 字典+暴力破譯雜湊版.py
 .env
 *.tmp
+
+# Generated practice artifacts
+**/target/
+*.vcd
+*.vvp
+/.practice-build/
