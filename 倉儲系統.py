@@ -44,5 +44,3 @@ if __name__ == "__main__":
     elif choice == 'search':container_system.search(input())
     elif choice == 'inspect':container_system.inspect()
     elif choice == 'history':container_system.history(input())
-
-

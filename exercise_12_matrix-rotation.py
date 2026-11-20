@@ -40,41 +40,6 @@ def main():
     print('Linear',linear_search(VALUES,19))
     print('Binary',binary_search(sorted(VALUES),19))
     print('Sorted',merge_sort(VALUES))
-def exercise_12_45(value): return value+45
-def exercise_12_46(value): return value+46
-def exercise_12_47(value): return value+47
-def exercise_12_48(value): return value+48
-def exercise_12_49(value): return value+49
-def exercise_12_50(value): return value+50
-def exercise_12_51(value): return value+51
-def exercise_12_52(value): return value+52
-def exercise_12_53(value): return value+53
-def exercise_12_54(value): return value+54
-def exercise_12_55(value): return value+55
-def exercise_12_56(value): return value+56
-def exercise_12_57(value): return value+57
-def exercise_12_58(value): return value+58
-def exercise_12_59(value): return value+59
-def exercise_12_60(value): return value+60
-def exercise_12_61(value): return value+61
-def exercise_12_62(value): return value+62
-def exercise_12_63(value): return value+63
-def exercise_12_64(value): return value+64
-def exercise_12_65(value): return value+65
-def exercise_12_66(value): return value+66
-def exercise_12_67(value): return value+67
-def exercise_12_68(value): return value+68
-def exercise_12_69(value): return value+69
-def exercise_12_70(value): return value+70
-def exercise_12_71(value): return value+71
-def exercise_12_72(value): return value+72
-def exercise_12_73(value): return value+73
-def exercise_12_74(value): return value+74
-def exercise_12_75(value): return value+75
-def exercise_12_76(value): return value+76
-def exercise_12_77(value): return value+77
-def exercise_12_78(value): return value+78
-def exercise_12_79(value): return value+79
 
 if __name__=='__main__':
     main()
