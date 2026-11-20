@@ -1,45 +1,27 @@
-from collections import Counter,deque
-import heapq
-
-EXERCISE=13
-TOPIC='others:spiral-fill'
-VALUES=[12,7,19,3,25,11,8,19]
-
-def summarize(values):
-    return {'sum':sum(values),'maximum':max(values),'minimum':min(values)}
-
-def linear_search(values,target):
-    for index,value in enumerate(values):
-        if value==target:return index
-    return -1
-
-def binary_search(values,target):
-    low=0;high=len(values)
-    while low<high:
-        middle=(low+high)//2
-        if values[middle]<target:low=middle+1
-        else:high=middle
-    return low if low<len(values) and values[low]==target else -1
-
-def merge_sort(values):
-    if len(values)<2:return values
-    middle=len(values)//2
-    left=merge_sort(values[:middle]);right=merge_sort(values[middle:])
-    result=[];left_index=right_index=0
-    while left_index<len(left) and right_index<len(right):
-        if left[left_index]<=right[right_index]:
-            result.append(left[left_index]);left_index+=1
-        else:
-            result.append(right[right_index]);right_index+=1
-    return result+left[left_index:]+right[right_index:]
-
-def main():
-    print('Exercise',EXERCISE)
-    print('Topic',TOPIC)
-    print('Summary',summarize(VALUES))
-    print('Linear',linear_search(VALUES,19))
-    print('Binary',binary_search(sorted(VALUES),19))
-    print('Sorted',merge_sort(VALUES))
-
-if __name__=='__main__':
-    main()
+def spiral_matrix(size):
+    """Create an n x n matrix filled clockwise with consecutive integers."""
+    if size < 0:
+        raise ValueError("size must be non-negative")
+    result = [[0] * size for _ in range(size)]
+    top, bottom, left, right = 0, size - 1, 0, size - 1
+    number = 1
+    while top <= bottom and left <= right:
+        for column in range(left, right + 1):
+            result[top][column] = number
+            number += 1
+        top += 1
+        for row in range(top, bottom + 1):
+            result[row][right] = number
+            number += 1
+        right -= 1
+        if top <= bottom:
+            for column in range(right, left - 1, -1):
+                result[bottom][column] = number
+                number += 1
+            bottom -= 1
+        if left <= right:
+            for row in range(bottom, top - 1, -1):
+                result[row][left] = number
+                number += 1
+            left += 1
+    return result

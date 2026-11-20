@@ -1,45 +1,27 @@
-from collections import Counter,deque
-import heapq
-
-EXERCISE=39
-TOPIC='others:n-queens'
-VALUES=[12,7,19,3,25,11,8,19]
-
-def summarize(values):
-    return {'sum':sum(values),'maximum':max(values),'minimum':min(values)}
-
-def linear_search(values,target):
-    for index,value in enumerate(values):
-        if value==target:return index
-    return -1
-
-def binary_search(values,target):
-    low=0;high=len(values)
-    while low<high:
-        middle=(low+high)//2
-        if values[middle]<target:low=middle+1
-        else:high=middle
-    return low if low<len(values) and values[low]==target else -1
-
-def merge_sort(values):
-    if len(values)<2:return values
-    middle=len(values)//2
-    left=merge_sort(values[:middle]);right=merge_sort(values[middle:])
-    result=[];left_index=right_index=0
-    while left_index<len(left) and right_index<len(right):
-        if left[left_index]<=right[right_index]:
-            result.append(left[left_index]);left_index+=1
-        else:
-            result.append(right[right_index]);right_index+=1
-    return result+left[left_index:]+right[right_index:]
-
-def main():
-    print('Exercise',EXERCISE)
-    print('Topic',TOPIC)
-    print('Summary',summarize(VALUES))
-    print('Linear',linear_search(VALUES,19))
-    print('Binary',binary_search(sorted(VALUES),19))
-    print('Sorted',merge_sort(VALUES))
-
-if __name__=='__main__':
-    main()
+def solve_n_queens(size):
+    """Return all valid queen placements for an n x n board."""
+    if size < 0:
+        raise ValueError("size must be non-negative")
+    solutions = []
+    columns = set()
+    descending = set()
+    ascending = set()
+    board = [['.' for _ in range(size)] for _ in range(size)]
+    def place(row):
+        if row == size:
+            solutions.append([''.join(line) for line in board])
+            return
+        for column in range(size):
+            if column in columns or row - column in descending or row + column in ascending:
+                continue
+            columns.add(column)
+            descending.add(row - column)
+            ascending.add(row + column)
+            board[row][column] = 'Q'
+            place(row + 1)
+            board[row][column] = '.'
+            columns.remove(column)
+            descending.remove(row - column)
+            ascending.remove(row + column)
+    place(0)
+    return solutions

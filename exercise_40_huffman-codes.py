@@ -1,45 +1,35 @@
-from collections import Counter,deque
 import heapq
+from collections import Counter
 
-EXERCISE=40
-TOPIC='others:huffman-codes'
-VALUES=[12,7,19,3,25,11,8,19]
 
-def summarize(values):
-    return {'sum':sum(values),'maximum':max(values),'minimum':min(values)}
+def huffman_codes(text):
+    """Build prefix-free Huffman codes for characters in text."""
+    frequencies = Counter(text)
+    if not frequencies:
+        return {}
+    if len(frequencies) == 1:
+        return {next(iter(frequencies)): "0"}
 
-def linear_search(values,target):
-    for index,value in enumerate(values):
-        if value==target:return index
-    return -1
+    heap = []
+    for sequence, (character, frequency) in enumerate(frequencies.items()):
+        heapq.heappush(heap, (frequency, sequence, (character,)))
 
-def binary_search(values,target):
-    low=0;high=len(values)
-    while low<high:
-        middle=(low+high)//2
-        if values[middle]<target:low=middle+1
-        else:high=middle
-    return low if low<len(values) and values[low]==target else -1
+    sequence = len(heap)
+    while len(heap) > 1:
+        left_frequency, _, left = heapq.heappop(heap)
+        right_frequency, _, right = heapq.heappop(heap)
+        heapq.heappush(heap, (left_frequency + right_frequency, sequence, (left, right)))
+        sequence += 1
 
-def merge_sort(values):
-    if len(values)<2:return values
-    middle=len(values)//2
-    left=merge_sort(values[:middle]);right=merge_sort(values[middle:])
-    result=[];left_index=right_index=0
-    while left_index<len(left) and right_index<len(right):
-        if left[left_index]<=right[right_index]:
-            result.append(left[left_index]);left_index+=1
-        else:
-            result.append(right[right_index]);right_index+=1
-    return result+left[left_index:]+right[right_index:]
+    codes = {}
 
-def main():
-    print('Exercise',EXERCISE)
-    print('Topic',TOPIC)
-    print('Summary',summarize(VALUES))
-    print('Linear',linear_search(VALUES,19))
-    print('Binary',binary_search(sorted(VALUES),19))
-    print('Sorted',merge_sort(VALUES))
+    def walk(node, prefix):
+        if len(node) == 1:
+            codes[node[0]] = prefix
+            return
+        left, right = node
+        walk(left, prefix + "0")
+        walk(right, prefix + "1")
 
-if __name__=='__main__':
-    main()
+    walk(heap[0][2], "")
+    return codes

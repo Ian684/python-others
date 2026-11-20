@@ -1,45 +1,35 @@
-from collections import Counter,deque
-import heapq
+class SegmentTree:
+    """Point-update, range-sum segment tree."""
+    def __init__(self, values):
+        self.size = len(values)
+        self.values = [0] * (2 * self.size) if self.size else []
+        self.values[self.size:] = values
+        for index in range(self.size - 1, 0, -1):
+            self.values[index] = self.values[index * 2] + self.values[index * 2 + 1]
 
-EXERCISE=37
-TOPIC='others:segment-tree'
-VALUES=[12,7,19,3,25,11,8,19]
+    def update(self, index, value):
+        if not 0 <= index < self.size:
+            raise IndexError("index outside segment tree")
+        index += self.size
+        self.values[index] = value
+        while index > 1:
+            index //= 2
+            self.values[index] = self.values[index * 2] + self.values[index * 2 + 1]
 
-def summarize(values):
-    return {'sum':sum(values),'maximum':max(values),'minimum':min(values)}
-
-def linear_search(values,target):
-    for index,value in enumerate(values):
-        if value==target:return index
-    return -1
-
-def binary_search(values,target):
-    low=0;high=len(values)
-    while low<high:
-        middle=(low+high)//2
-        if values[middle]<target:low=middle+1
-        else:high=middle
-    return low if low<len(values) and values[low]==target else -1
-
-def merge_sort(values):
-    if len(values)<2:return values
-    middle=len(values)//2
-    left=merge_sort(values[:middle]);right=merge_sort(values[middle:])
-    result=[];left_index=right_index=0
-    while left_index<len(left) and right_index<len(right):
-        if left[left_index]<=right[right_index]:
-            result.append(left[left_index]);left_index+=1
-        else:
-            result.append(right[right_index]);right_index+=1
-    return result+left[left_index:]+right[right_index:]
-
-def main():
-    print('Exercise',EXERCISE)
-    print('Topic',TOPIC)
-    print('Summary',summarize(VALUES))
-    print('Linear',linear_search(VALUES,19))
-    print('Binary',binary_search(sorted(VALUES),19))
-    print('Sorted',merge_sort(VALUES))
-
-if __name__=='__main__':
-    main()
+    def range_sum(self, left, right):
+        """Return the inclusive range sum [left, right]."""
+        if left < 0 or right < left or right >= self.size:
+            raise IndexError("range is outside segment tree")
+        left += self.size
+        right += self.size + 1
+        total = 0
+        while left < right:
+            if left & 1:
+                total += self.values[left]
+                left += 1
+            if right & 1:
+                right -= 1
+                total += self.values[right]
+            left //= 2
+            right //= 2
+        return total
