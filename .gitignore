@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.log
+common_passwords.txt
+dcard.log
+字典+暴力破譯綜合版.py
+字典+暴力破譯雜湊版.py
+.env
+*.tmp
