@@ -1,0 +1,1286 @@
+[
+  {
+    "id": 4,
+    "function": "normalize_spaces",
+    "title": "文字空白整理",
+    "goal": "保留內容、合併空白",
+    "cases": [
+      [
+        [
+          " a\t b\n貓 "
+        ],
+        "a b 貓"
+      ],
+      [
+        [
+          ""
+        ],
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "function": "wrap_paragraph",
+    "title": "段落換行",
+    "goal": "字詞邊界與長單字",
+    "cases": [
+      [
+        [
+          "one two three",
+          7
+        ],
+        [
+          "one two",
+          "three"
+        ]
+      ],
+      [
+        [
+          "abcdefgh",
+          3
+        ],
+        [
+          "abcdefgh"
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "function": "slugify",
+    "title": "網址短名稱",
+    "goal": "Unicode 正規化與分隔符",
+    "cases": [
+      [
+        [
+          " Café & Tea! "
+        ],
+        "cafe-tea"
+      ],
+      [
+        [
+          "---"
+        ],
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 7,
+    "function": "hashtags",
+    "title": "擷取標籤",
+    "goal": "Unicode 與去重",
+    "cases": [
+      [
+        [
+          "#Python #貓 #Python"
+        ],
+        [
+          "Python",
+          "貓"
+        ]
+      ],
+      [
+        [
+          "abc#bad"
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 8,
+    "function": "redact_emails",
+    "title": "郵件遮罩",
+    "goal": "保留網域、遮住帳號",
+    "cases": [
+      [
+        [
+          "mail a.b@example.com now"
+        ],
+        "mail ***@example.com now"
+      ],
+      [
+        [
+          "no email"
+        ],
+        "no email"
+      ]
+    ]
+  },
+  {
+    "id": 9,
+    "function": "mask_phone",
+    "title": "電話遮罩",
+    "goal": "格式清理與保留尾碼",
+    "cases": [
+      [
+        [
+          "0912-345-678"
+        ],
+        "******5678"
+      ],
+      [
+        [
+          "1234"
+        ],
+        "1234"
+      ]
+    ]
+  },
+  {
+    "id": 10,
+    "function": "parse_properties",
+    "title": "設定檔鍵值",
+    "goal": "註解、等號與重複鍵",
+    "cases": [
+      [
+        [
+          "# note\nx=1\ny=a=b"
+        ],
+        {
+          "x": "1",
+          "y": "a=b"
+        }
+      ],
+      [
+        [
+          ""
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 11,
+    "function": "deduplicate_lines",
+    "title": "文字行去重",
+    "goal": "保留順序與非空行",
+    "cases": [
+      [
+        [
+          "a\n b \na\n"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      [
+        [
+          "\n"
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 12,
+    "function": "natural_sort",
+    "title": "自然檔名排序",
+    "goal": "數字段按數值比較",
+    "cases": [
+      [
+        [
+          [
+            "file10",
+            "file2",
+            "file1"
+          ]
+        ],
+        [
+          "file1",
+          "file2",
+          "file10"
+        ]
+      ],
+      [
+        [
+          []
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 13,
+    "function": "chunks",
+    "title": "資料分批",
+    "goal": "最後一批不足大小",
+    "cases": [
+      [
+        [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          2
+        ],
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5
+          ]
+        ]
+      ],
+      [
+        [
+          [],
+          3
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 14,
+    "function": "flatten_once",
+    "title": "單層展平",
+    "goal": "只展平一層列表",
+    "cases": [
+      [
+        [
+          [
+            [
+              1,
+              2
+            ],
+            [],
+            [
+              3
+            ]
+          ]
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          [
+            [
+              [
+                1
+              ]
+            ]
+          ]
+        ],
+        [
+          [
+            1
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 15,
+    "function": "unique_values",
+    "title": "穩定去重",
+    "goal": "非 hashable 值也可比較",
+    "cases": [
+      [
+        [
+          [
+            1,
+            2,
+            1,
+            3
+          ]
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        ],
+        [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 16,
+    "function": "group_records",
+    "title": "記錄分組",
+    "goal": "同鍵彙整",
+    "cases": [
+      [
+        [
+          [
+            {
+              "team": "a",
+              "n": 1
+            },
+            {
+              "team": "a",
+              "n": 2
+            }
+          ],
+          "team"
+        ],
+        {
+          "a": [
+            {
+              "team": "a",
+              "n": 1
+            },
+            {
+              "team": "a",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      [
+        [
+          [],
+          "team"
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 17,
+    "function": "index_records",
+    "title": "建立唯一索引",
+    "goal": "重複鍵不可靜默覆蓋",
+    "cases": [
+      [
+        [
+          [
+            {
+              "id": 1,
+              "name": "a"
+            },
+            {
+              "id": 2,
+              "name": "b"
+            }
+          ],
+          "id"
+        ],
+        {
+          "1": {
+            "id": 1,
+            "name": "a"
+          },
+          "2": {
+            "id": 2,
+            "name": "b"
+          }
+        }
+      ],
+      [
+        [
+          [],
+          "id"
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 18,
+    "function": "merge_counts",
+    "title": "計數合併",
+    "goal": "整數計數累加",
+    "cases": [
+      [
+        [
+          [
+            {
+              "a": 2
+            },
+            {
+              "a": 3,
+              "b": 1
+            }
+          ]
+        ],
+        {
+          "a": 5,
+          "b": 1
+        }
+      ],
+      [
+        [
+          []
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 19,
+    "function": "csv_records",
+    "title": "CSV 讀取",
+    "goal": "引號與欄位數",
+    "cases": [
+      [
+        [
+          "name,n\n\"a,b\",2\n"
+        ],
+        [
+          {
+            "name": "a,b",
+            "n": "2"
+          }
+        ]
+      ],
+      [
+        [
+          "x\n"
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 20,
+    "function": "ini_sections",
+    "title": "INI 區段",
+    "goal": "標準設定解析器",
+    "cases": [
+      [
+        [
+          "[app]\nport=8000\n"
+        ],
+        {
+          "app": {
+            "port": "8000"
+          }
+        }
+      ],
+      [
+        [
+          ""
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 21,
+    "function": "query_parameters",
+    "title": "網址參數",
+    "goal": "保留重複鍵及空值",
+    "cases": [
+      [
+        [
+          "https://example.test/?a=1&a=2&b="
+        ],
+        {
+          "a": [
+            "1",
+            "2"
+          ],
+          "b": [
+            ""
+          ]
+        }
+      ],
+      [
+        [
+          "https://example.test/"
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 22,
+    "function": "build_url",
+    "title": "查詢網址組合",
+    "goal": "編碼參數而非字串拼接",
+    "cases": [
+      [
+        [
+          "https://e.test/?x=1",
+          {
+            "q": "a b",
+            "tag": [
+              "c",
+              "d"
+            ]
+          }
+        ],
+        "https://e.test/?x=1&q=a+b&tag=c&tag=d"
+      ],
+      [
+        [
+          "https://e.test/#top",
+          {}
+        ],
+        "https://e.test/#top"
+      ]
+    ]
+  },
+  {
+    "id": 23,
+    "function": "hostname",
+    "title": "網址主機名",
+    "goal": "user info 與連接埠",
+    "cases": [
+      [
+        [
+          "https://user@example.test:8443/a"
+        ],
+        "example.test"
+      ],
+      [
+        [
+          "http://localhost/"
+        ],
+        "localhost"
+      ]
+    ]
+  },
+  {
+    "id": 24,
+    "function": "markdown_links",
+    "title": "Markdown 連結清單",
+    "goal": "簡單行內連結擷取",
+    "cases": [
+      [
+        [
+          "[A](a.md) ![pic](p.png)"
+        ],
+        [
+          [
+            "A",
+            "a.md"
+          ]
+        ]
+      ],
+      [
+        [
+          "plain"
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 25,
+    "function": "pretty_json",
+    "title": "JSON 格式化",
+    "goal": "排序鍵與保留 Unicode",
+    "cases": [
+      [
+        [
+          "{\"b\":2,\"a\":1}"
+        ],
+        "{\n  \"a\": 1,\n  \"b\": 2\n}"
+      ],
+      [
+        [
+          "[]"
+        ],
+        "[]"
+      ]
+    ]
+  },
+  {
+    "id": 26,
+    "function": "changed_keys",
+    "title": "JSON 字典差異",
+    "goal": "分辨缺少鍵與 null",
+    "cases": [
+      [
+        [
+          {
+            "a": null,
+            "b": 1
+          },
+          {
+            "b": 2,
+            "c": 3
+          }
+        ],
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      [
+        [
+          {},
+          {}
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 27,
+    "function": "deep_get",
+    "title": "巢狀欄位讀取",
+    "goal": "路徑列表與預設值",
+    "cases": [
+      [
+        [
+          {
+            "a": {
+              "b": 2
+            }
+          },
+          [
+            "a",
+            "b"
+          ]
+        ],
+        2
+      ],
+      [
+        [
+          {},
+          [
+            "x"
+          ],
+          "fallback"
+        ],
+        "fallback"
+      ]
+    ]
+  },
+  {
+    "id": 28,
+    "function": "deep_merge",
+    "title": "巢狀字典合併",
+    "goal": "不修改原輸入",
+    "cases": [
+      [
+        [
+          {
+            "a": {
+              "x": 1
+            },
+            "b": 2
+          },
+          {
+            "a": {
+              "y": 3
+            }
+          }
+        ],
+        {
+          "a": {
+            "x": 1,
+            "y": 3
+          },
+          "b": 2
+        }
+      ],
+      [
+        [
+          {
+            "a": [
+              1
+            ]
+          },
+          {
+            "a": [
+              2
+            ]
+          }
+        ],
+        {
+          "a": [
+            2
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "id": 29,
+    "function": "safe_filename",
+    "title": "檔名清理",
+    "goal": "路徑分隔符與 Windows 保留名",
+    "cases": [
+      [
+        [
+          "../report?.txt"
+        ],
+        "_report_.txt"
+      ],
+      [
+        [
+          "CON.txt"
+        ],
+        "_CON.txt"
+      ]
+    ]
+  },
+  {
+    "id": 30,
+    "function": "path_components",
+    "title": "相對路徑整理",
+    "goal": "拒絕回到父目錄",
+    "cases": [
+      [
+        [
+          "a/./b//c"
+        ],
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      [
+        [
+          ""
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 31,
+    "function": "extension_counts",
+    "title": "副檔名統計",
+    "goal": "最後一段副檔名與大小寫",
+    "cases": [
+      [
+        [
+          [
+            "a.TXT",
+            "b.txt",
+            "README",
+            "x.tar.gz"
+          ]
+        ],
+        {
+          "": 1,
+          ".gz": 1,
+          ".txt": 2
+        }
+      ],
+      [
+        [
+          []
+        ],
+        {}
+      ]
+    ]
+  },
+  {
+    "id": 32,
+    "function": "human_bytes",
+    "title": "容量格式化",
+    "goal": "二進位 KiB 單位",
+    "cases": [
+      [
+        [
+          1536
+        ],
+        "1.50 KiB"
+      ],
+      [
+        [
+          0
+        ],
+        "0.00 B"
+      ]
+    ]
+  },
+  {
+    "id": 33,
+    "function": "parse_byte_size",
+    "title": "容量字串解析",
+    "goal": "單位白名單與整數位元組",
+    "cases": [
+      [
+        [
+          "1.5 KiB"
+        ],
+        1536
+      ],
+      [
+        [
+          "0 B"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": 34,
+    "function": "date_range",
+    "title": "日期區間",
+    "goal": "含首尾與跨月",
+    "cases": [
+      [
+        [
+          "2024-02-28",
+          "2024-03-01"
+        ],
+        [
+          "2024-02-28",
+          "2024-02-29",
+          "2024-03-01"
+        ]
+      ],
+      [
+        [
+          "2026-01-01",
+          "2026-01-01"
+        ],
+        [
+          "2026-01-01"
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 35,
+    "function": "business_days",
+    "title": "工作日計數",
+    "goal": "週末與自訂假日",
+    "cases": [
+      [
+        [
+          "2026-11-16",
+          "2026-11-22",
+          [
+            "2026-11-18"
+          ]
+        ],
+        4
+      ],
+      [
+        [
+          "2026-11-21",
+          "2026-11-22",
+          []
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": 36,
+    "function": "month_bounds",
+    "title": "月份首末日",
+    "goal": "閏月與日期驗證",
+    "cases": [
+      [
+        [
+          2024,
+          2
+        ],
+        [
+          "2024-02-01",
+          "2024-02-29"
+        ]
+      ],
+      [
+        [
+          2026,
+          12
+        ],
+        [
+          "2026-12-01",
+          "2026-12-31"
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 37,
+    "function": "event_conflicts",
+    "title": "行程衝突",
+    "goal": "半開時間區間",
+    "cases": [
+      [
+        [
+          [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              5,
+              15
+            ]
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      [
+        [
+          []
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 38,
+    "function": "clock_seconds",
+    "title": "時間轉秒",
+    "goal": "嚴格 HH:MM:SS",
+    "cases": [
+      [
+        [
+          "01:02:03"
+        ],
+        3723
+      ],
+      [
+        [
+          "00:00:00"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": 39,
+    "function": "format_duration",
+    "title": "秒數格式化",
+    "goal": "保留超過 24 小時",
+    "cases": [
+      [
+        [
+          90061
+        ],
+        "25:01:01"
+      ],
+      [
+        [
+          0
+        ],
+        "0:00:00"
+      ]
+    ]
+  },
+  {
+    "id": 40,
+    "function": "iqr_outliers",
+    "title": "四分位離群值",
+    "goal": "明確使用 inclusive 四分位",
+    "cases": [
+      [
+        [
+          [
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            100
+          ]
+        ],
+        [
+          100
+        ]
+      ],
+      [
+        [
+          [
+            2,
+            2
+          ]
+        ],
+        []
+      ]
+    ]
+  },
+  {
+    "id": 41,
+    "function": "rolling_average",
+    "title": "移動平均",
+    "goal": "固定視窗與 running sum",
+    "cases": [
+      [
+        [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          2
+        ],
+        [
+          1.5,
+          2.5,
+          3.5
+        ]
+      ],
+      [
+        [
+          [
+            5
+          ],
+          1
+        ],
+        [
+          5
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 42,
+    "function": "length_conversion",
+    "title": "長度換算",
+    "goal": "公尺為共同基準",
+    "cases": [
+      [
+        [
+          1,
+          "inch",
+          "cm"
+        ],
+        2.54
+      ],
+      [
+        [
+          1000,
+          "m",
+          "km"
+        ],
+        1
+      ]
+    ]
+  },
+  {
+    "id": 43,
+    "function": "temperature_conversion",
+    "title": "溫度換算",
+    "goal": "絕對零度檢查",
+    "cases": [
+      [
+        [
+          32,
+          "F",
+          "C"
+        ],
+        0
+      ],
+      [
+        [
+          0,
+          "C",
+          "K"
+        ],
+        273.15
+      ]
+    ]
+  },
+  {
+    "id": 44,
+    "function": "haversine_km",
+    "title": "球面距離",
+    "goal": "角度轉弧度與浮點界限",
+    "cases": [
+      [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        111.195
+      ],
+      [
+        [
+          [
+            25,
+            121
+          ],
+          [
+            25,
+            121
+          ]
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": 45,
+    "function": "luhn_valid",
+    "title": "Luhn 檢查碼",
+    "goal": "交錯倍增與非數字拒絕",
+    "cases": [
+      [
+        [
+          "79927398713"
+        ],
+        true
+      ],
+      [
+        [
+          "79927398714"
+        ],
+        false
+      ]
+    ]
+  },
+  {
+    "id": 46,
+    "function": "isbn10_valid",
+    "title": "ISBN-10 檢查碼",
+    "goal": "末位 X 的特殊規則",
+    "cases": [
+      [
+        [
+          "0-306-40615-2"
+        ],
+        true
+      ],
+      [
+        [
+          "0306406153"
+        ],
+        false
+      ]
+    ]
+  },
+  {
+    "id": 47,
+    "function": "ipv4_integer",
+    "title": "IPv4 轉整數",
+    "goal": "標準位址解析",
+    "cases": [
+      [
+        [
+          "127.0.0.1"
+        ],
+        2130706433
+      ],
+      [
+        [
+          "0.0.0.0"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": 48,
+    "function": "network_summary",
+    "title": "網段摘要",
+    "goal": "network/broadcast/總位址數",
+    "cases": [
+      [
+        [
+          "192.168.1.42/24"
+        ],
+        {
+          "network": "192.168.1.0",
+          "broadcast": "192.168.1.255",
+          "addresses": 256
+        }
+      ],
+      [
+        [
+          "10.0.0.1/32"
+        ],
+        {
+          "network": "10.0.0.1",
+          "broadcast": "10.0.0.1",
+          "addresses": 1
+        }
+      ]
+    ]
+  },
+  {
+    "id": 49,
+    "function": "base64_text",
+    "title": "Base64 還原",
+    "goal": "嚴格驗證與 UTF-8",
+    "cases": [
+      [
+        [
+          "SGVsbG8="
+        ],
+        "Hello"
+      ],
+      [
+        [
+          ""
+        ],
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 50,
+    "function": "rot13_text",
+    "title": "ROT13 編碼",
+    "goal": "可逆轉換不是加密",
+    "cases": [
+      [
+        [
+          "Hello 貓"
+        ],
+        "Uryyb 貓"
+      ],
+      [
+        [
+          "123"
+        ],
+        "123"
+      ]
+    ]
+  }
+]

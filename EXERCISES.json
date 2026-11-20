@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "title": "詞頻報告",
+    "source": "tools/word_report.py",
+    "entry": "frequent_words",
+    "goal": ""
+  },
+  {
+    "id": 2,
+    "title": "支出統計",
+    "source": "tools/expense_report.py",
+    "entry": "summarize",
+    "goal": ""
+  },
+  {
+    "id": 3,
+    "title": "重複檔案報告",
+    "source": "tools/duplicate_files.py",
+    "entry": "find_duplicates",
+    "goal": ""
+  },
+  {
+    "id": 4,
+    "title": "文字空白整理",
+    "source": "tools/more.py",
+    "entry": "normalize_spaces",
+    "goal": "保留內容、合併空白"
+  },
+  {
+    "id": 5,
+    "title": "段落換行",
+    "source": "tools/more.py",
+    "entry": "wrap_paragraph",
+    "goal": "字詞邊界與長單字"
+  },
+  {
+    "id": 6,
+    "title": "網址短名稱",
+    "source": "tools/more.py",
+    "entry": "slugify",
+    "goal": "Unicode 正規化與分隔符"
+  },
+  {
+    "id": 7,
+    "title": "擷取標籤",
+    "source": "tools/more.py",
+    "entry": "hashtags",
+    "goal": "Unicode 與去重"
+  },
+  {
+    "id": 8,
+    "title": "郵件遮罩",
+    "source": "tools/more.py",
+    "entry": "redact_emails",
+    "goal": "保留網域、遮住帳號"
+  },
+  {
+    "id": 9,
+    "title": "電話遮罩",
+    "source": "tools/more.py",
+    "entry": "mask_phone",
+    "goal": "格式清理與保留尾碼"
+  },
+  {
+    "id": 10,
+    "title": "設定檔鍵值",
+    "source": "tools/more.py",
+    "entry": "parse_properties",
+    "goal": "註解、等號與重複鍵"
+  },
+  {
+    "id": 11,
+    "title": "文字行去重",
+    "source": "tools/more.py",
+    "entry": "deduplicate_lines",
+    "goal": "保留順序與非空行"
+  },
+  {
+    "id": 12,
+    "title": "自然檔名排序",
+    "source": "tools/more.py",
+    "entry": "natural_sort",
+    "goal": "數字段按數值比較"
+  },
+  {
+    "id": 13,
+    "title": "資料分批",
+    "source": "tools/more.py",
+    "entry": "chunks",
+    "goal": "最後一批不足大小"
+  },
+  {
+    "id": 14,
+    "title": "單層展平",
+    "source": "tools/more.py",
+    "entry": "flatten_once",
+    "goal": "只展平一層列表"
+  },
+  {
+    "id": 15,
+    "title": "穩定去重",
+    "source": "tools/more.py",
+    "entry": "unique_values",
+    "goal": "非 hashable 值也可比較"
+  },
+  {
+    "id": 16,
+    "title": "記錄分組",
+    "source": "tools/more.py",
+    "entry": "group_records",
+    "goal": "同鍵彙整"
+  },
+  {
+    "id": 17,
+    "title": "建立唯一索引",
+    "source": "tools/more.py",
+    "entry": "index_records",
+    "goal": "重複鍵不可靜默覆蓋"
+  },
+  {
+    "id": 18,
+    "title": "計數合併",
+    "source": "tools/more.py",
+    "entry": "merge_counts",
+    "goal": "整數計數累加"
+  },
+  {
+    "id": 19,
+    "title": "CSV 讀取",
+    "source": "tools/more.py",
+    "entry": "csv_records",
+    "goal": "引號與欄位數"
+  },
+  {
+    "id": 20,
+    "title": "INI 區段",
+    "source": "tools/more.py",
+    "entry": "ini_sections",
+    "goal": "標準設定解析器"
+  },
+  {
+    "id": 21,
+    "title": "網址參數",
+    "source": "tools/more.py",
+    "entry": "query_parameters",
+    "goal": "保留重複鍵及空值"
+  },
+  {
+    "id": 22,
+    "title": "查詢網址組合",
+    "source": "tools/more.py",
+    "entry": "build_url",
+    "goal": "編碼參數而非字串拼接"
+  },
+  {
+    "id": 23,
+    "title": "網址主機名",
+    "source": "tools/more.py",
+    "entry": "hostname",
+    "goal": "user info 與連接埠"
+  },
+  {
+    "id": 24,
+    "title": "Markdown 連結清單",
+    "source": "tools/more.py",
+    "entry": "markdown_links",
+    "goal": "簡單行內連結擷取"
+  },
+  {
+    "id": 25,
+    "title": "JSON 格式化",
+    "source": "tools/more.py",
+    "entry": "pretty_json",
+    "goal": "排序鍵與保留 Unicode"
+  },
+  {
+    "id": 26,
+    "title": "JSON 字典差異",
+    "source": "tools/more.py",
+    "entry": "changed_keys",
+    "goal": "分辨缺少鍵與 null"
+  },
+  {
+    "id": 27,
+    "title": "巢狀欄位讀取",
+    "source": "tools/more.py",
+    "entry": "deep_get",
+    "goal": "路徑列表與預設值"
+  },
+  {
+    "id": 28,
+    "title": "巢狀字典合併",
+    "source": "tools/more.py",
+    "entry": "deep_merge",
+    "goal": "不修改原輸入"
+  },
+  {
+    "id": 29,
+    "title": "檔名清理",
+    "source": "tools/more.py",
+    "entry": "safe_filename",
+    "goal": "路徑分隔符與 Windows 保留名"
+  },
+  {
+    "id": 30,
+    "title": "相對路徑整理",
+    "source": "tools/more.py",
+    "entry": "path_components",
+    "goal": "拒絕回到父目錄"
+  },
+  {
+    "id": 31,
+    "title": "副檔名統計",
+    "source": "tools/more.py",
+    "entry": "extension_counts",
+    "goal": "最後一段副檔名與大小寫"
+  },
+  {
+    "id": 32,
+    "title": "容量格式化",
+    "source": "tools/more.py",
+    "entry": "human_bytes",
+    "goal": "二進位 KiB 單位"
+  },
+  {
+    "id": 33,
+    "title": "容量字串解析",
+    "source": "tools/more.py",
+    "entry": "parse_byte_size",
+    "goal": "單位白名單與整數位元組"
+  },
+  {
+    "id": 34,
+    "title": "日期區間",
+    "source": "tools/more.py",
+    "entry": "date_range",
+    "goal": "含首尾與跨月"
+  },
+  {
+    "id": 35,
+    "title": "工作日計數",
+    "source": "tools/more.py",
+    "entry": "business_days",
+    "goal": "週末與自訂假日"
+  },
+  {
+    "id": 36,
+    "title": "月份首末日",
+    "source": "tools/more.py",
+    "entry": "month_bounds",
+    "goal": "閏月與日期驗證"
+  },
+  {
+    "id": 37,
+    "title": "行程衝突",
+    "source": "tools/more.py",
+    "entry": "event_conflicts",
+    "goal": "半開時間區間"
+  },
+  {
+    "id": 38,
+    "title": "時間轉秒",
+    "source": "tools/more.py",
+    "entry": "clock_seconds",
+    "goal": "嚴格 HH:MM:SS"
+  },
+  {
+    "id": 39,
+    "title": "秒數格式化",
+    "source": "tools/more.py",
+    "entry": "format_duration",
+    "goal": "保留超過 24 小時"
+  },
+  {
+    "id": 40,
+    "title": "四分位離群值",
+    "source": "tools/more.py",
+    "entry": "iqr_outliers",
+    "goal": "明確使用 inclusive 四分位"
+  },
+  {
+    "id": 41,
+    "title": "移動平均",
+    "source": "tools/more.py",
+    "entry": "rolling_average",
+    "goal": "固定視窗與 running sum"
+  },
+  {
+    "id": 42,
+    "title": "長度換算",
+    "source": "tools/more.py",
+    "entry": "length_conversion",
+    "goal": "公尺為共同基準"
+  },
+  {
+    "id": 43,
+    "title": "溫度換算",
+    "source": "tools/more.py",
+    "entry": "temperature_conversion",
+    "goal": "絕對零度檢查"
+  },
+  {
+    "id": 44,
+    "title": "球面距離",
+    "source": "tools/more.py",
+    "entry": "haversine_km",
+    "goal": "角度轉弧度與浮點界限"
+  },
+  {
+    "id": 45,
+    "title": "Luhn 檢查碼",
+    "source": "tools/more.py",
+    "entry": "luhn_valid",
+    "goal": "交錯倍增與非數字拒絕"
+  },
+  {
+    "id": 46,
+    "title": "ISBN-10 檢查碼",
+    "source": "tools/more.py",
+    "entry": "isbn10_valid",
+    "goal": "末位 X 的特殊規則"
+  },
+  {
+    "id": 47,
+    "title": "IPv4 轉整數",
+    "source": "tools/more.py",
+    "entry": "ipv4_integer",
+    "goal": "標準位址解析"
+  },
+  {
+    "id": 48,
+    "title": "網段摘要",
+    "source": "tools/more.py",
+    "entry": "network_summary",
+    "goal": "network/broadcast/總位址數"
+  },
+  {
+    "id": 49,
+    "title": "Base64 還原",
+    "source": "tools/more.py",
+    "entry": "base64_text",
+    "goal": "嚴格驗證與 UTF-8"
+  },
+  {
+    "id": 50,
+    "title": "ROT13 編碼",
+    "source": "tools/more.py",
+    "entry": "rot13_text",
+    "goal": "可逆轉換不是加密"
+  }
+]
