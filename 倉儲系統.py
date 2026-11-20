@@ -1,33 +1,36 @@
 class container_system:
-    def __init__(self , data):
+    def __init__(self, data):
         self.data = data
-    def search(search_id):
-        print(search_id , end = ' ')
-        for value in data[search_id]:
-            print(value , end = ' ')
-    def put(product):
-        name , plus , side , price = product.split()
-        if name in data:
-            data[name][1] += int(plus)
+
+    def search(self, search_id):
+        if search_id not in self.data:
+            print("error")
+            return
+        print(search_id, *self.data[search_id])
+
+    def put(self, product):
+        name, plus, side, price = product.split()
+        quantity = int(plus)
+        if name in self.data:
+            self.data[name][0] += quantity
         else:
-            data[name] = [int(plus) , side , float(price)] 
-    def take(product):
-        name , minus , side , price = product.split()
-        if name in data:
-            if data[name][1] - minus >= 0:
-                data[name][1] -= minus
+            self.data[name] = [quantity, side, float(price)]
+
+    def take(self, product):
+        name, minus, *_ = product.split()
+        quantity = int(minus)
+        if name in self.data and self.data[name][0] >= quantity:
+            self.data[name][0] -= quantity
         else:
             print("error")
-    def inspect():
-        for key , value in data:
-            quantity , side , price = value
-            print(key , quantity , side , price)
-    def history():
 
+    def inspect(self):
+        for key, value in sorted(self.data.items()):
+            quantity, side, price = value
+            print(key, quantity, side, price)
 
-
-
-
+    def history(self, _command=None):
+        print("history is not available")
 
 
 
@@ -36,11 +39,16 @@ if __name__ == "__main__":
     from collections import defaultdict 
     data = defaultdict(list)
     arr = []
-    container_system = container_system(data)
+    system = container_system(data)
     # name : quantity , side , price
     choice = input()
-    if choice == 'put':container_system.put(input())
-    elif choice == 'take':container_system.take(input())
-    elif choice == 'search':container_system.search(input())
-    elif choice == 'inspect':container_system.inspect()
-    elif choice == 'history':container_system.history(input())
+    if choice == 'put':
+        system.put(input())
+    elif choice == 'take':
+        system.take(input())
+    elif choice == 'search':
+        system.search(input())
+    elif choice == 'inspect':
+        system.inspect()
+    elif choice == 'history':
+        system.history(input())
