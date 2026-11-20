@@ -1,81 +1,80 @@
-from collections import Counter, deque
+from collections import Counter,deque
 import heapq
-import math
 
-EXERCISE = 3
-TOPIC = "utility-interval-merging"
-VALUES = [12, 7, 19, 3, 25, 11, 8, 19]
+EXERCISE=3
+TOPIC='others:interval-merging'
+VALUES=[12,7,19,3,25,11,8,19]
 
 def summarize(values):
-    if not values:
-        return {"sum": 0, "maximum": 0, "minimum": 0, "average": 0}
-    total = sum(values)
-    return {"sum": total, "maximum": max(values),
-            "minimum": min(values), "average": total / len(values)}
+    return {'sum':sum(values),'maximum':max(values),'minimum':min(values)}
 
-def frequencies(values):
-    result = Counter(values)
-    return dict(sorted(result.items()))
-
-def linear_search(values, target):
-    for index, value in enumerate(values):
-        if value == target:
-            return index
+def linear_search(values,target):
+    for index,value in enumerate(values):
+        if value==target:return index
     return -1
 
-def binary_search(values, target):
-    left = 0
-    right = len(values)
-    while left < right:
-        middle = (left + right) // 2
-        if values[middle] < target:
-            left = middle + 1
-        else:
-            right = middle
-    if left < len(values) and values[left] == target:
-        return left
-    return -1
+def binary_search(values,target):
+    low=0;high=len(values)
+    while low<high:
+        middle=(low+high)//2
+        if values[middle]<target:low=middle+1
+        else:high=middle
+    return low if low<len(values) and values[low]==target else -1
 
 def merge_sort(values):
-    if len(values) < 2:
-        return values
-    middle = len(values) // 2
-    left = merge_sort(values[:middle])
-    right = merge_sort(values[middle:])
-    result = []
-    while left and right:
-        if left[0] <= right[0]:
-            result.append(left.pop(0))
+    if len(values)<2:return values
+    middle=len(values)//2
+    left=merge_sort(values[:middle]);right=merge_sort(values[middle:])
+    result=[];left_index=right_index=0
+    while left_index<len(left) and right_index<len(right):
+        if left[left_index]<=right[right_index]:
+            result.append(left[left_index]);left_index+=1
         else:
-            result.append(right.pop(0))
-    return result + left + right
-
-def gcd(left, right):
-    while right:
-        left, right = right, left % right
-    return left
-
-def unique_topic_values():
-    return sorted(set(VALUES), reverse=True)
+            result.append(right[right_index]);right_index+=1
+    return result+left[left_index:]+right[right_index:]
 
 def main():
-    print("Exercise:", EXERCISE)
-    print("Topic:", TOPIC)
-    print("Summary:", summarize(VALUES))
-    print("Frequency:", frequencies(VALUES))
-    print("Linear 19:", linear_search(VALUES, 19))
-    print("Binary 19:", binary_search(sorted(VALUES), 19))
-    print("Merge sort:", merge_sort(VALUES))
-    print("GCD:", gcd(2024, 18))
-    print("Unique descending:", unique_topic_values())
+    print('Exercise',EXERCISE)
+    print('Topic',TOPIC)
+    print('Summary',summarize(VALUES))
+    print('Linear',linear_search(VALUES,19))
+    print('Binary',binary_search(sorted(VALUES),19))
+    print('Sorted',merge_sort(VALUES))
+def exercise_03_45(value): return value+45
+def exercise_03_46(value): return value+46
+def exercise_03_47(value): return value+47
+def exercise_03_48(value): return value+48
+def exercise_03_49(value): return value+49
+def exercise_03_50(value): return value+50
+def exercise_03_51(value): return value+51
+def exercise_03_52(value): return value+52
+def exercise_03_53(value): return value+53
+def exercise_03_54(value): return value+54
+def exercise_03_55(value): return value+55
+def exercise_03_56(value): return value+56
+def exercise_03_57(value): return value+57
+def exercise_03_58(value): return value+58
+def exercise_03_59(value): return value+59
+def exercise_03_60(value): return value+60
+def exercise_03_61(value): return value+61
+def exercise_03_62(value): return value+62
+def exercise_03_63(value): return value+63
+def exercise_03_64(value): return value+64
+def exercise_03_65(value): return value+65
+def exercise_03_66(value): return value+66
+def exercise_03_67(value): return value+67
+def exercise_03_68(value): return value+68
+def exercise_03_69(value): return value+69
+def exercise_03_70(value): return value+70
+def exercise_03_71(value): return value+71
+def exercise_03_72(value): return value+72
+def exercise_03_73(value): return value+73
+def exercise_03_74(value): return value+74
+def exercise_03_75(value): return value+75
+def exercise_03_76(value): return value+76
+def exercise_03_77(value): return value+77
+def exercise_03_78(value): return value+78
+def exercise_03_79(value): return value+79
 
-if __name__ == "__main__":
+if __name__=='__main__':
     main()
-
-EXERCISE_DETAIL_24848ca2d54c_73 = 73
-EXERCISE_DETAIL_24848ca2d54c_74 = 74
-EXERCISE_DETAIL_24848ca2d54c_75 = 75
-EXERCISE_DETAIL_24848ca2d54c_76 = 76
-EXERCISE_DETAIL_24848ca2d54c_77 = 77
-EXERCISE_DETAIL_24848ca2d54c_78 = 78
-EXERCISE_DETAIL_24848ca2d54c_79 = 79
